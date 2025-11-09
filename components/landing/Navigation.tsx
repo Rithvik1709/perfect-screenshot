@@ -2,8 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-// logo removed; render text brand instead of image
-import { LOGO_PATH } from "@/lib/logo";
 import { Button } from "@/components/ui/button";
 import { SiX } from "react-icons/si";
 import { motion, useSpring, useTransform } from "motion/react";
@@ -32,7 +30,7 @@ function AnimatedCounter({ value }: { value: number }) {
 
 export function Navigation({
   ctaLabel = "Editor",
-  ctaHref = "/home"
+  ctaHref = "/login"
 }: NavigationProps) {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-border/50 bg-background/95 backdrop-blur-xl supports-backdrop-filter:bg-background/90">

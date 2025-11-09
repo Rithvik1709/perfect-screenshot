@@ -25,7 +25,7 @@ export default function Home() {
       heroSubtitle="with Stage"
       heroDescription="A fully in-browser canvas editor that brings your ideas to life. Add images, text, backgrounds, and export your creations in high quality—all without external services. Built for designers and creators."
       ctaLabel="Get Started"
-      ctaHref="/home"
+      ctaHref="/login"
       features={features}
     />
   );
