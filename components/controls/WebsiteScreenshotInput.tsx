@@ -79,7 +79,14 @@ export function WebsiteScreenshotInput() {
       const data = await response.json()
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to capture screenshot')
+        // Log full server response for debugging and show raw error in UI
+        // so the user can see the server-side failure message.
+        // Leave loading state cleanup to the finally block.
+        // eslint-disable-next-line no-console
+        console.error('Screenshot API error:', data)
+        setError(typeof data === 'object' && data?.error ? String(data.error) : 'Failed to capture screenshot')
+        setIsLoading(false)
+        return
       }
 
       // Convert base64 to blob URL

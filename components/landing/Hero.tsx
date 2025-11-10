@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { HeroVideoDialog } from "@/components/ui/hero-video-dialog";
+// Hero video/demo dialog removed per request
 import { Instrument_Serif } from "next/font/google";
 
 const instrumentSerif = Instrument_Serif({
@@ -55,25 +55,10 @@ export function Hero({
               {ctaLabel}
             </Button>
           </Link>
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className="rounded-lg w-full sm:w-auto border-primary text-primary hover:bg-accent hover:border-primary/80 touch-manipulation min-h-[44px] text-base sm:text-lg"
-            onClick={() => setIsVideoOpen(true)}
-          >
-            View Demo
-          </Button>
+          {/* Demo button removed */}
         </div>
       </div>
-      <HeroVideoDialog
-        videoSrc={videoEmbedUrl}
-        thumbnailSrc={videoThumbnailUrl}
-        thumbnailAlt="Demo video thumbnail"
-        open={isVideoOpen}
-        onOpenChange={setIsVideoOpen}
-        showThumbnail={false}
-        animationStyle="from-center"
-      />
+      {/* Demo dialog removed */}
     </main>
   );
 }

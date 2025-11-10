@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/popover';
 import { FaCoffee, FaDollarSign, FaMobileAlt, FaCopy, FaCheck, FaHeart } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
+import { Portal } from '@/components/ui/Portal';
 import { Heart } from 'lucide-react';
 import { Button as MovingBorderButton } from '@/components/ui/moving-border';
 
@@ -34,26 +35,28 @@ export function SponsorButton({ className, variant = 'bar' }: SponsorButtonProps
 
   if (variant === 'floating') {
     return (
-      <div className={cn('fixed bottom-6 right-6 z-50', className)}>
-        <Popover open={isOpen} onOpenChange={setIsOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              className="h-14 w-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
-              aria-label="Sponsor"
+      <Portal>
+        <div className={cn('fixed bottom-6 right-6 z-50', className)}>
+          <Popover open={isOpen} onOpenChange={setIsOpen}>
+            <PopoverTrigger asChild>
+              <Button
+                className="h-14 w-14 rounded-full bg-primary hover:bg-primary/90 text-primary-foreground shadow-lg hover:shadow-xl transition-all"
+                aria-label="Sponsor"
+              >
+                <Heart className="h-6 w-6" />
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent 
+              className="w-80 p-0" 
+              align="end"
+              side="top"
+              sideOffset={12}
             >
-              <Heart className="h-6 w-6" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent 
-            className="w-80 p-0" 
-            align="end"
-            side="top"
-            sideOffset={12}
-          >
-            <SponsorContent upiId={upiId} copied={copied} onCopy={handleCopy} />
-          </PopoverContent>
-        </Popover>
-      </div>
+              <SponsorContent upiId={upiId} copied={copied} onCopy={handleCopy} />
+            </PopoverContent>
+          </Popover>
+        </div>
+      </Portal>
     );
   }
 

@@ -22,8 +22,8 @@ export default function Home() {
   return (
     <LandingPage
       heroTitle="Create stunning visual designs"
-      heroSubtitle="with Stage"
-      heroDescription="A fully in-browser canvas editor that brings your ideas to life. Add images, text, backgrounds, and export your creations in high quality—all without external services. Built for designers and creators."
+      heroSubtitle="with Perfect-Screenshot"
+      heroDescription="A fully in-browser canvas editor that brings your ideas to life. Add images, text, backgrounds, and export your creations in high quality all without external services. Built for designers and creators."
       ctaLabel="Get Started"
       ctaHref="/login"
       features={features}

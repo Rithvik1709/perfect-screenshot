@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import chromium from '@sparticuz/chromium'
 
 export const maxDuration = 10
+const NAVIGATION_TIMEOUT = 20000 // 20s - increase from 8s to be more tolerant of slow sites
 
 async function getBrowser() {
   const isProduction = process.env.NODE_ENV === 'production' || process.env.VERCEL_ENV
@@ -93,10 +94,19 @@ export async function POST(request: NextRequest) {
     })
 
     // First, load the page to detect its default theme
-    await page.goto(validUrl.toString(), {
-      waitUntil: 'networkidle2',
-      timeout: 8000,
-    })
+    try {
+      await page.goto(validUrl.toString(), {
+        waitUntil: 'networkidle2',
+        timeout: NAVIGATION_TIMEOUT,
+      })
+    } catch (navError) {
+      // Close browser and return a helpful error message to the client
+      await browser.close()
+      browser = null
+      console.error('Navigation error:', navError)
+      const message = navError instanceof Error ? navError.message : 'Navigation failed'
+      return NextResponse.json({ error: `Navigation error: ${message}` }, { status: 400 })
+    }
 
     // Detect the website's default theme preference
     const themePreference = await page.evaluate(() => {
@@ -153,15 +163,15 @@ export async function POST(request: NextRequest) {
     })
 
     // Reload page with the detected theme preference
-    await page.emulateMediaFeatures([
-      { name: 'prefers-color-scheme', value: themePreference }
-    ])
+    await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: themePreference }])
 
-    // Reload to apply theme preference
-    await page.reload({
-      waitUntil: 'networkidle2',
-      timeout: 8000,
-    })
+    // Reload to apply theme preference with the same increased timeout
+    try {
+      await page.reload({ waitUntil: 'networkidle2', timeout: NAVIGATION_TIMEOUT })
+    } catch (reloadError) {
+      console.error('Reload error:', reloadError)
+      // Continue - sometimes reload may fail but the initial load was sufficient
+    }
 
     const screenshot = await page.screenshot({
       type: 'png',

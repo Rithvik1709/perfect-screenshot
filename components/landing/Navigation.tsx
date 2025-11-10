@@ -41,7 +41,7 @@ export function Navigation({
         <div className="flex items-center gap-2 sm:gap-3">
           {/* GitHub link removed as requested */}
           <Link
-            href="https://x.com/code_kartik"
+            href="https://x.com/Bngrithvik"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-2 py-1.5 hover:bg-accent rounded-lg transition-colors touch-manipulation text-muted-foreground hover:text-foreground group"

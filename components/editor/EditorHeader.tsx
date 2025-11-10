@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 // logo removed; render text brand instead of image
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { cn } from "@/lib/utils";
@@ -11,6 +14,30 @@ interface EditorHeaderProps {
 }
 
 export function EditorHeader({ className }: EditorHeaderProps) {
+  const router = useRouter();
+
+  async function handleLogout() {
+    try {
+      if (isSupabaseConfigured) {
+        await supabase.auth.signOut();
+      }
+    } catch (err) {
+      // ignore errors but log for debugging
+      // eslint-disable-next-line no-console
+      console.error("Logout error:", err);
+    }
+
+    // Clear the local dev flags used by the app
+    try {
+      localStorage.removeItem("ps_user_email");
+      localStorage.removeItem("ps_logged_in");
+    } catch (e) {
+      // ignore
+    }
+
+  // Replace history so user cannot navigate back to the editor after logout
+  router.replace("/");
+  }
   return (
     <header
       className={cn(
@@ -29,7 +56,11 @@ export function EditorHeader({ className }: EditorHeaderProps) {
 
           <div className="flex-1" />
 
-          {/* GitHub link removed as requested */}
+          <div className="flex items-center gap-2">
+            <Button size="sm" variant="ghost" onClick={handleLogout}>
+              Logout
+            </Button>
+          </div>
         </div>
       </div>
     </header>

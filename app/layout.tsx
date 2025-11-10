@@ -14,28 +14,28 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Stage - Image Showcase Builder",
-    template: "%s | Stage",
+    default: "Perfect-Screenshot",
+    template: "%s | Perfect-Screenshot",
   },
   description: "Create stunning showcase images for your projects with customizable templates and layouts. A fully in-browser canvas editor for adding images, text, and backgrounds—no external services required.",
   keywords: ["image editor", "canvas editor", "design tool", "image showcase", "template builder", "in-browser editor", "client-side export"],
-  authors: [{ name: "Stage" }],
-  creator: "Stage",
-  publisher: "Stage",
+  authors: [{ name: "Perfect-Screenshot" }],
+  creator: "Perfect-Screenshot",
+  publisher: "Perfect-Screenshot",
   metadataBase: new URL(process.env.BETTER_AUTH_URL || "https://stage-psi-one.vercel.app"),
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Stage",
-    title: "Stage - Image Showcase Builder",
+    siteName: "Perfect-Screenshot",
+    title: "Perfect-Screenshot - Image Showcase Builder",
     description: "Create stunning showcase images for your projects with customizable templates and layouts",
     images: [
       {
         url: "https://stage-psi-one.vercel.app/og.png",
         width: 1200,
         height: 630,
-        alt: "Stage - Image Showcase Builder",
+        alt: "Perfect-Screenshot",
       },
     ],
   },
