@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -13,6 +14,8 @@ export default function LoginPage() {
   const [password, setPassword] = React.useState("");
   const [name, setName] = React.useState("");
   const [confirm, setConfirm] = React.useState("");
+  const [showPassword, setShowPassword] = React.useState(false);
+  const [showConfirm, setShowConfirm] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [message, setMessage] = React.useState<string | null>(null);
 
@@ -236,28 +239,52 @@ export default function LoginPage() {
           {mode !== "forgot" && (
             <div>
               <label className="text-xs text-muted-foreground">Password</label>
-              <input
-                className="w-full mt-1 px-3 py-2 rounded border border-border bg-transparent"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Your password"
-                required={mode === "login" || mode === "signup"}
-              />
+              <div className="relative mt-1">
+                <input
+                  className="w-full pr-10 px-3 py-2 rounded border border-border bg-transparent"
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Your password"
+                  required={mode === "login" || mode === "signup"}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((s) => !s)}
+                  className="absolute inset-y-0 right-2 flex items-center p-1 text-muted-foreground"
+                  aria-label={showPassword ? "Hide password" : "Show password"}
+                >
+                  {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
             </div>
           )}
 
           {mode === "signup" && (
             <div>
               <label className="text-xs text-muted-foreground">Confirm password</label>
-              <input
-                className="w-full mt-1 px-3 py-2 rounded border border-border bg-transparent"
-                type="password"
-                value={confirm}
-                onChange={(e) => setConfirm(e.target.value)}
-                placeholder="Confirm password"
-                required
-              />
+              <div className="relative mt-1">
+                <input
+                  className="w-full pr-10 px-3 py-2 rounded border border-border bg-transparent"
+                  type={showConfirm ? "text" : "password"}
+                  value={confirm}
+                  onChange={(e) => setConfirm(e.target.value)}
+                  placeholder="Confirm password"
+                  required
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm((s) => !s)}
+                  className="absolute inset-y-0 right-2 flex items-center p-1 text-muted-foreground"
+                  aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
+                >
+                  {showConfirm ? <EyeOff size={16} /> : <Eye size={16} />}
+                </button>
+              </div>
+              {/* Inline mismatch hint */}
+              {confirm && password !== confirm && (
+                <div className="text-xs text-destructive mt-1">passwords dont match</div>
+              )}
             </div>
           )}
 
