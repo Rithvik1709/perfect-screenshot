@@ -4,6 +4,7 @@ import * as React from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,9 +19,78 @@ export default function LoginPage() {
   const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    // NOTE: This is a simple local-only auth stub for dev. Replace with real
-    // auth (OAuth, next-auth, etc.) when ready.
+    // If Supabase is configured, use it for auth. Otherwise fall back to the
+    // simple localStorage-based dev stub implemented below.
     try {
+      if (isSupabaseConfigured) {
+        if (mode === "login") {
+          if (!email || !password) {
+            setMessage("Please enter email and password");
+            setLoading(false);
+            return;
+          }
+
+          const { data, error } = await supabase.auth.signInWithPassword({
+            email,
+            password,
+          });
+          if (error) {
+            setMessage(error.message || "Sign in failed");
+            setLoading(false);
+            return;
+          }
+
+          // Keep the local dev checks working by setting simple flags too.
+          localStorage.setItem("ps_user_email", email);
+          localStorage.setItem("ps_logged_in", "1");
+          setMessage(null);
+          router.push("/home");
+          return;
+        }
+
+        if (mode === "signup") {
+          if (!email || !password) {
+            setMessage("Email and password are required");
+            setLoading(false);
+            return;
+          }
+
+          const { data, error } = await supabase.auth.signUp({ email, password });
+          if (error) {
+            setMessage(error.message || "Sign up failed");
+            setLoading(false);
+            return;
+          }
+
+          setMessage("Sign up successful. Check your email to confirm (if required). Please sign in.");
+          setMode("login");
+          setPassword("");
+          setConfirm("");
+          setLoading(false);
+          return;
+        }
+
+        if (mode === "forgot") {
+          if (!email) {
+            setMessage("Enter your email to reset password");
+            setLoading(false);
+            return;
+          }
+          const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
+            redirectTo: `${window.location.origin}/login`,
+          });
+          if (error) {
+            setMessage(error.message || "Failed to send reset email");
+            setLoading(false);
+            return;
+          }
+          setMessage("Check your email for password reset instructions.");
+          setLoading(false);
+          return;
+        }
+      }
+
+      // --- Local dev-only fallback (keeps existing behavior when Supabase not configured)
       const usersRaw = localStorage.getItem("ps_users") || "{}";
       const users: Record<string, { name?: string; password: string }> = JSON.parse(usersRaw);
 
@@ -105,7 +175,7 @@ export default function LoginPage() {
       }
     } catch (err) {
       console.error(err);
-      setMessage("An error occurred")
+      setMessage("An error occurred");
     } finally {
       setLoading(false);
     }
