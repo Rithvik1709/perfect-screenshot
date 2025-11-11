@@ -31,7 +31,7 @@ export function LandingPage({
   featuresTitle,
   
   sponsorsTitle,
-  brandName = "Apply Perfect",
+  brandName = "Perfect Screenshot",
   footerText = "Built with Next.js and Konva.",
 }: LandingPageProps) {
   return (

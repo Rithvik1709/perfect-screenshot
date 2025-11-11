@@ -50,7 +50,7 @@ export function EditorHeader({ className }: EditorHeaderProps) {
         <div className="relative h-14 sm:h-16 flex items-center">
           {/* Brand - pinned to the far left */}
           <Link href="/" className="absolute left-0 top-0 h-full flex items-center px-3">
-            <span className="font-semibold text-sm">Apply Perfect</span>
+            <span className="font-semibold text-sm"> Perfect Screenshot</span>
           </Link>
 
           {/* Sidebar trigger removed to simplify header on home page */}
