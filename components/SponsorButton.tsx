@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { FaCoffee, FaMobileAlt, FaCopy, FaCheck, FaHeart } from 'react-icons/fa';
+import { FaMobileAlt, FaCopy, FaCheck, FaHeart } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 import { Portal } from '@/components/ui/Portal';
 import { Heart } from 'lucide-react';
@@ -98,22 +98,7 @@ function SponsorContent({
 }) {
   return (
     <div className="p-4 space-y-3">
-      {/* Buy Me Coffee */}
-      <a
-        href="https://buymeacoffee.com/code_kartik"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors cursor-pointer group"
-      >
-        <div className="h-10 w-10 rounded-lg bg-yellow-400 flex items-center justify-center shrink-0">
-          <FaCoffee className="h-5 w-5 text-white" />
-        </div>
-        <span className="text-sm font-medium text-foreground group-hover:text-foreground">
-          Buy Me Coffee
-        </span>
-      </a>
-
-      {/* Wise option removed */}
+      {/* Sponsor links (Buy Me Coffee removed) */}
 
       {/* UPI Payment */}
       <div className="p-3 rounded-lg border border-border bg-muted">
