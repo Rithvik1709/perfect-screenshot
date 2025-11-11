@@ -532,14 +532,16 @@ function CanvasRenderer({ image }: { image: HTMLImageElement }) {
     <div
       ref={containerRef}
       id="image-render-card"
-      className="flex items-center justify-center relative"
+      className="flex items-center justify-center relative w-full h-full"
       style={{
         width: '100%',
         maxWidth: `${containerWidth}px`,
         aspectRatio: responsiveDimensions.aspectRatio,
-        maxHeight: 'calc(100vh - 200px)',
+        // Allow canvas to expand to much of the viewport. Use calc to leave room for header only.
+        maxHeight: 'calc(100vh - 96px)',
+        height: 'auto',
         backgroundColor: 'transparent',
-        padding: '24px',
+        padding: '12px',
       }}
     >
       <div
@@ -547,8 +549,8 @@ function CanvasRenderer({ image }: { image: HTMLImageElement }) {
           position: 'relative',
           width: `${canvasW}px`,
           height: `${canvasH}px`,
-          minWidth: `${canvasW}px`,
-          minHeight: `${canvasH}px`,
+          minWidth: `${Math.min(canvasW, viewportSize.width - 48)}px`,
+          minHeight: `${Math.min(canvasH, viewportSize.height - 96)}px`,
           overflow: 'visible',
         }}
       >
