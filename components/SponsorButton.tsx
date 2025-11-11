@@ -7,7 +7,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover';
-import { FaCoffee, FaDollarSign, FaMobileAlt, FaCopy, FaCheck, FaHeart } from 'react-icons/fa';
+import { FaCoffee, FaMobileAlt, FaCopy, FaCheck, FaHeart } from 'react-icons/fa';
 import { cn } from '@/lib/utils';
 import { Portal } from '@/components/ui/Portal';
 import { Heart } from 'lucide-react';
@@ -21,7 +21,7 @@ interface SponsorButtonProps {
 export function SponsorButton({ className, variant = 'bar' }: SponsorButtonProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
-  const upiId = 'kartik.labhshetwar@oksbi';
+  const upiId = 'rithvikbng@oksbi';
 
   const handleCopy = async () => {
     try {
@@ -113,20 +113,7 @@ function SponsorContent({
         </span>
       </a>
 
-      {/* PayPal */}
-      <a
-        href="https://wise.com/pay/r/Zlc3_90igqVqILo"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="flex items-center gap-3 p-3 rounded-lg hover:bg-accent transition-colors cursor-pointer group"
-      >
-        <div className="h-10 w-10 rounded-lg bg-blue-500 flex items-center justify-center shrink-0">
-          <FaDollarSign className="h-5 w-5 text-white" />
-        </div>
-        <span className="text-sm font-medium text-foreground group-hover:text-foreground">
-          Wise
-        </span>
-      </a>
+      {/* Wise option removed */}
 
       {/* UPI Payment */}
       <div className="p-3 rounded-lg border border-border bg-muted">
