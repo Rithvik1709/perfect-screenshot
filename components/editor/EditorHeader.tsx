@@ -51,7 +51,7 @@ export function EditorHeader({ className }: EditorHeaderProps) {
           <SidebarTrigger className="transition-opacity hover:opacity-80 touch-manipulation rounded-lg" />
           
           <Link href="/" className="flex items-center transition-opacity hover:opacity-80 rounded-lg p-1">
-            <span className="font-semibold text-sm">Stage</span>
+            <span className="font-semibold text-sm">Apply Perfect</span>
           </Link>
 
           <div className="flex-1" />
