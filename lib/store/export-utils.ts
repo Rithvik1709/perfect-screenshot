@@ -32,10 +32,11 @@ export async function exportImageWithGradient(elementId: string): Promise<void> 
         }
 
         // Create download link
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `image-${Date.now()}.png`;
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  // Use fixed export filename
+  link.download = `perfectscreenshot.png`;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);

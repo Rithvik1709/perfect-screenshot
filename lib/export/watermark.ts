@@ -13,11 +13,11 @@ export interface WatermarkOptions {
 
 const DEFAULT_OPTIONS: Required<WatermarkOptions> = {
   text: 'stagee.art',
-  fontSize: 0, // Will be calculated based on canvas size
+  fontSize: 0, 
   position: 'bottom-right',
   opacity: 0.7,
-  backgroundColor: 'transparent', // No background
-  textColor: 'rgba(255, 255, 255, 0.7)', // Lightened text
+  backgroundColor: 'transparent', 
+  textColor: 'rgba(255, 255, 255, 0.7)', 
 };
 
 /**

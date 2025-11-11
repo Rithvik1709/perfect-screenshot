@@ -14,7 +14,7 @@ import { Button } from '@/components/ui/button';
 import { Download, Trash2 } from 'lucide-react';
 import { PresetSelector } from '@/components/presets/PresetSelector';
 import { useExport } from '@/hooks/useExport';
-import { FaGithub } from 'react-icons/fa';
+// FaGithub removed - Proudly Open Source button removed per request
 
 export function SidebarLeft({
   ...props
@@ -80,20 +80,7 @@ export function SidebarLeft({
           <StyleTabs />
         </SidebarContent>
         <SidebarFooter className="p-4 sm:p-5 border-t border-sidebar-border">
-          <a
-            href="https://github.com/KartikLabhshetwar/stage"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-full"
-          >
-            <Button
-              variant="outline"
-              className="w-full h-10 justify-center gap-2.5 rounded-lg bg-background hover:bg-accent text-foreground border border-border hover:border-border/80 shadow-sm hover:shadow-md transition-all duration-200 font-medium text-sm px-4 overflow-hidden"
-            >
-              <FaGithub className="size-4 shrink-0" />
-              <span className="truncate">Proudly Open Source</span>
-            </Button>
-          </a>
+          {/* Proudly Open Source button removed */}
         </SidebarFooter>
       </Sidebar>
 

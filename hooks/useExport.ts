@@ -122,8 +122,9 @@ export function useExport(selectedAspectRatio: string) {
         throw new Error('Invalid image data generated');
       }
 
-      // Save blob to IndexedDB for high-quality storage
-      const fileName = `stage-${Date.now()}.${settings.format}`;
+  // Save blob to IndexedDB for high-quality storage
+  // Use a fixed export filename as requested
+  const fileName = `perfectscreenshot.${settings.format}`;
       try {
         await saveExportedImage(
           result.blob,
