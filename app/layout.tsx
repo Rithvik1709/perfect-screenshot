@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    siteName: "Perfect-Screenshot",
-    title: "Perfect-Screenshot - Image Showcase Builder",
+    siteName: "Apply Perfect",
+    title: "Apply Perfect - Image Showcase Builder",
     description: "Create stunning showcase images for your projects with customizable templates and layouts",
     images: [
       {
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Stage - Image Showcase Builder",
+    title: "Apply Perfect - Image Showcase Builder",
     description: "Create stunning showcase images for your projects with customizable templates and layouts",
     images: ["https://stage-psi-one.vercel.app/og.png"],
     creator: "@stage",
