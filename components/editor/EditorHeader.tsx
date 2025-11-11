@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 // logo removed; render text brand instead of image
-import { SidebarTrigger } from "@/components/ui/sidebar";
+// Sidebar trigger removed
 import { cn } from "@/lib/utils";
 
 interface EditorHeaderProps {
@@ -53,10 +53,7 @@ export function EditorHeader({ className }: EditorHeaderProps) {
             <span className="font-semibold text-sm">Apply Perfect</span>
           </Link>
 
-          {/* Sidebar trigger placed after the brand to the right of it */}
-          <div className="absolute left-36 top-0 h-full flex items-center">
-            <SidebarTrigger className="transition-opacity hover:opacity-80 touch-manipulation rounded-lg" />
-          </div>
+          {/* Sidebar trigger removed to simplify header on home page */}
 
           {/* Logout - pinned to the far right */}
           <div className="absolute right-0 top-0 h-full flex items-center px-3">
