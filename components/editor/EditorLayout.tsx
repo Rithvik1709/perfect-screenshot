@@ -50,8 +50,8 @@ function EditorMain() {
         </div>
       )}
 
-      <div className="flex-1 flex overflow-hidden">
-  <div className="container mx-auto px-4 sm:px-5 lg:px-6 flex-1 flex overflow-hidden pb-14">
+    <div className="flex-1 flex overflow-hidden">
+  <div className="w-full px-4 sm:px-5 lg:px-6 flex-1 flex overflow-hidden pb-14">
           {/* Left Panel - Desktop */}
           {!isMobile && <EditorLeftPanel />}
 
