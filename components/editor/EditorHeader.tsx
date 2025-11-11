@@ -46,17 +46,20 @@ export function EditorHeader({ className }: EditorHeaderProps) {
         className
       )}
     >
-      <div className="container mx-auto px-4 sm:px-5 lg:px-6">
-        <div className="flex h-14 sm:h-16 items-center gap-3 sm:gap-4">
-          <SidebarTrigger className="transition-opacity hover:opacity-80 touch-manipulation rounded-lg" />
-          
-          <Link href="/" className="flex items-center transition-opacity hover:opacity-80 rounded-lg p-1">
+      <div className="w-full px-0">
+        <div className="relative h-14 sm:h-16 flex items-center">
+          {/* Brand - pinned to the far left */}
+          <Link href="/" className="absolute left-0 top-0 h-full flex items-center px-3">
             <span className="font-semibold text-sm">Apply Perfect</span>
           </Link>
 
-          <div className="flex-1" />
+          {/* Sidebar trigger placed after the brand to the right of it */}
+          <div className="absolute left-36 top-0 h-full flex items-center">
+            <SidebarTrigger className="transition-opacity hover:opacity-80 touch-manipulation rounded-lg" />
+          </div>
 
-          <div className="flex items-center gap-2">
+          {/* Logout - pinned to the far right */}
+          <div className="absolute right-0 top-0 h-full flex items-center px-3">
             <Button size="sm" variant="ghost" onClick={handleLogout}>
               Logout
             </Button>
